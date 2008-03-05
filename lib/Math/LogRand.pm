@@ -1,5 +1,5 @@
 package Math::LogRand;
-our $VERSION = '0.02'; # udpated pod, neater perl
+our $VERSION = '0.03';
 require 5.005_62;
 use strict;
 use warnings;
@@ -11,11 +11,11 @@ sub LogRand{ my ($floor, $ceil) = (shift,shift);
 
 	$ceil = $floor + 1 if $ceil < $floor;
 	$ceil = $ceil + 1 - $floor;
-	
+
 	return $floor >= $ceil ?
-		$ceil	
-	:	
-		$ceil  - int( log( rand( $ceil - 1 ) + 1 ) / log( $ceil ) * $ceil ) + $floor 
+		$ceil
+	:
+		$ceil  - int( log( rand( $ceil - 1 ) + 1 ) / log( $ceil ) * $ceil ) + $floor
 }
 
 1;
@@ -37,12 +37,12 @@ Math::LogRand - Perl extension to return a random number with log weighting.
 
 =head1 DESCRIPTION
 
-Accepts arguments: the floor of distribution, and the ceilling of distribution.
+Accepts two arguments: the floor of distribution, and the ceilling of distribution.
 
-Returns a 'random' integer produced by the Perl C<rand()> function, 
+Returns a 'random' integer produced by the Perl C<rand()> function,
 between input parameters, with weighting to low integers by log distribution.
 
-How good/bad this is, I don't know: it's really for my own convenience, but 
+How good/bad this is, I don't know: it's really for my own convenience, but
 I hope you find it useful.  Any suggestions really very gratefully received!
 
 =head2 EXPORT

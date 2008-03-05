@@ -1,6 +1,7 @@
+eg/eg.pl
 Changes
-LogRand.pm
+lib/Math/LogRand.pm
 Makefile.PL
 MANIFEST
-test.pl
+t/test.t
 META.yml                                 Module meta-data (added by MakeMaker)
