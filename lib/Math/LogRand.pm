@@ -1,21 +1,24 @@
 package Math::LogRand;
-our $VERSION = '0.03';
-require 5.005_62;
 use strict;
 use warnings;
+our $VERSION = '0.04';
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw( LogRand );
 
-sub LogRand{ my ($floor, $ceil) = (shift,shift);
+sub LogRand {
+
+	shift if $_[0] eq __PACKAGE__;
+
+	my ($floor, $ceil) = (shift,shift);
 
 	$ceil = $floor + 1 if $ceil < $floor;
 	$ceil = $ceil + 1 - $floor;
 
-	return $floor >= $ceil ?
-		$ceil
-	:
-		$ceil  - int( log( rand( $ceil - 1 ) + 1 ) / log( $ceil ) * $ceil ) + $floor
+	return $ceil if $floor >= $ceil;
+	my $x = $ceil  - int( log( rand( $ceil - 1 ) + 1 ) / log( $ceil ) * $ceil ) + $floor;
+
+	return $x > $ceil? $ceil : $x;
 }
 
 1;
