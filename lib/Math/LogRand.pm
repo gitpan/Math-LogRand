@@ -1,8 +1,10 @@
 package Math::LogRand;
 use strict;
 use warnings;
-our $VERSION = '0.04';
+use POSIX;
 require Exporter;
+
+our $VERSION = '0.05';
 our @ISA = qw(Exporter);
 our @EXPORT = qw( LogRand );
 
@@ -10,14 +12,14 @@ sub LogRand {
 
 	shift if $_[0] eq __PACKAGE__;
 
-	my ($floor, $ceil) = (shift,shift);
+	my ($floor, $ceil) = @_;
 
-	$ceil = $floor + 1 if $ceil < $floor;
-	$ceil = $ceil + 1 - $floor;
+	$ceil = $floor if $ceil < $floor;
+	$ceil = $ceil; # + 1 ; #- $floor;
 
 	return $ceil if $floor >= $ceil;
 	my $x = $ceil  - int( log( rand( $ceil - 1 ) + 1 ) / log( $ceil ) * $ceil ) + $floor;
-
+	
 	return $x > $ceil? $ceil : $x;
 }
 
@@ -39,6 +41,8 @@ Math::LogRand - Perl extension to return a random number with log weighting.
 	print "$_\toccured $test{$_} times.\n" foreach sort keys %test;
 
 =head1 DESCRIPTION
+
+This module attempts to implement a scalar version of the MATLAB logrand function.
 
 Accepts two arguments: the floor of distribution, and the ceilling of distribution.
 

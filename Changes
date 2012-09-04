@@ -1,5 +1,8 @@
 Revision history for Perl extension Math::LogRand.
 
+0.05  2012-09-04 11:00 CET
+	- RT 79391
+
 0.03  2008-03-05 17:57
 	- eg; extra test
 
